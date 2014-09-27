@@ -1,6 +1,10 @@
 #!/bin/bash
+dW="1024"
+dH="768"
+a=$3
+b=$4
 
-cvtOut="$(cvt 1024 768 $2)"
+cvtOut="$(cvt ${a:-$dW} ${b:-$dH} $2)"
 
 # http://stackoverflow.com/questions/19771965/split-bash-string-by-newline-characters
 readarray -t Modeline <<< "$cvtOut"
