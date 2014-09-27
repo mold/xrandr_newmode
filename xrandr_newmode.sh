@@ -19,7 +19,6 @@ echo $name
 `xrandr --newmode $name $Modeline`
 `xrandr --addmode $1 $name`
 `xrandr --output $1 --mode $name`
-`xrandr --rmmode $name`
 
 # regex to get name, don't know how to use though :-))
 #echo "${Modeline[1]:8}" | grep -P '(?<=")[\w.]+(?=")'
