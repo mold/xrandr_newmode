@@ -6,16 +6,16 @@ cvtOut="$(cvt 1024 768 $2)"
 readarray -t Modeline <<< "$cvtOut"
 #IFS=$'\n' STUFF=($cvtOut)
 
-for i in "${Modeline[@]}"; do
-    echo $i
-done
+name=${Modeline[1]:10:14}
+Modeline=${Modeline[1]:25}
 
-Modeline=${Modeline[1]:8}
-name=${Modeline:2:14}
+echo $Modeline
+echo $name
 
-`xrandr --newmode $Modeline`
+`xrandr --newmode $name $Modeline`
 `xrandr --addmode $1 $name`
-`xrandr --output $1 -s $name`
+`xrandr --output $1 --mode $name`
+`xrandr --rmmode $name`
 
 # regex to get name, don't know how to use though :-))
 #echo "${Modeline[1]:8}" | grep -P '(?<=")[\w.]+(?=")'
